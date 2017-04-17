@@ -1,0 +1,16 @@
+html, body, .map {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.rotate-north {
+    top: 65px;
+    left: .5em;
+}
+
+.ol-touch .rotate-north {
+    top: 80px;
+}

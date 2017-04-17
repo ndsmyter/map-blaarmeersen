@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="3rdparty/openlayers/ol.css" type="text/css">
+    <link rel="stylesheet" href="style.css">
+    <title>Map van de Blaarmeersen</title>
+</head>
+<body>
+<div id="map" class="map"></div>
+
+<!-- Download JavaScript -->
+<script src="3rdparty/openlayers/ol.js" type="text/javascript"></script>
+<script type="text/javascript">
+    window.app = {};
+    var app = window.app;
+    /**
+     * @constructor
+     * @extends {ol.control.Control}
+     * @param {Object=} opt_options Control options.
+     */
+    app.RotateNorthControl = function (opt_options) {
+        var options = opt_options || {};
+        var button = document.createElement('button');
+        button.innerHTML = 'N';
+
+        var this_ = this;
+        var handleRotateNorth = function () {
+            this_.getMap().getView().setRotation(0);
+        };
+        console.log("North");
+
+        button.addEventListener('click', handleRotateNorth, false);
+        button.addEventListener('touchstart', handleRotateNorth, false);
+
+        var element = document.createElement('div');
+        element.className = 'rotate-north ol-unselectable ol-control';
+        element.appendChild(button);
+
+        ol.control.Control.call(this, {
+            element: element,
+            target: options.target
+        });
+
+    };
+    ol.inherits(app.RotateNorthControl, ol.control.Control);
+    var map = new ol.Map({
+        controls: ol.control.defaults({
+            attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+                collapsible: false
+            })
+        }).extend([
+            new app.RotateNorthControl()
+        ]),
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM()
+            })
+        ],
+        view: new ol.View({
+            center: ol.proj.transform([3.682798, 51.043670], 'EPSG:4326', 'EPSG:3857'),
+            zoom: 17
+        })
+    });
+</script>
+</body>
+</html>
