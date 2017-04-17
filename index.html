@@ -22,38 +22,45 @@
      * @extends {ol.control.Control}
      * @param {Object=} opt_options Control options.
      */
-    app.RotateNorthControl = function (opt_options) {
+    app.RotateControl = function (opt_options) {
         var options = opt_options || {};
         var button = document.createElement('button');
-        button.innerHTML = 'N';
+        button.innerHTML = opt_options.letter || 'N';
+        button.title = opt_options.title;
 
-        var this_ = this;
-        var handleRotateNorth = function () {
-            this_.getMap().getView().setRotation(0);
+        var scope = this;
+        var handleRotate = function () {
+            scope.getMap().getView().setRotation(opt_options.rotation || 0);
         };
-        console.log("North");
 
-        button.addEventListener('click', handleRotateNorth, false);
-        button.addEventListener('touchstart', handleRotateNorth, false);
+        button.addEventListener('click', handleRotate, false);
+        button.addEventListener('touchstart', handleRotate, false);
 
-        var element = document.createElement('div');
-        element.className = 'rotate-north ol-unselectable ol-control';
-        element.appendChild(button);
+        if (!app.element) {
+            app.element = document.createElement('div');
+            app.element.className = 'rotate-north ol-unselectable ol-control';
+        }
+        app.element.appendChild(button);
 
         ol.control.Control.call(this, {
-            element: element,
+            element: app.element,
             target: options.target
         });
-
     };
-    ol.inherits(app.RotateNorthControl, ol.control.Control);
+
+    ol.inherits(app.RotateControl, ol.control.Control);
     var map = new ol.Map({
         controls: ol.control.defaults({
             attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
                 collapsible: false
             })
         }).extend([
-            new app.RotateNorthControl()
+            new app.RotateControl({rotation: 0, letter: 'N', title: 'Draai de map met het noorden bovenaan'}),
+            new app.RotateControl({
+                rotation: Math.PI,
+                letter: 'D',
+                title: 'Draai de map naar het standpunt van de duikers'
+            })
         ]),
         target: 'map',
         layers: [
@@ -62,8 +69,9 @@
             })
         ],
         view: new ol.View({
-            center: ol.proj.transform([3.682798, 51.043670], 'EPSG:4326', 'EPSG:3857'),
-            zoom: 17
+            center: ol.proj.transform([3.683045, 51.043886], 'EPSG:4326', 'EPSG:3857'),
+            rotation: Math.PI,
+            zoom: 18
         })
     });
 </script>
