@@ -6,6 +6,10 @@ html, body, .map {
     margin: 0;
 }
 
+.map {
+    height: calc(100% - 30px);
+}
+
 .extra-controls {
     top: 65px;
     left: .5em;
@@ -18,4 +22,11 @@ html, body, .map {
 .ol-rotate {
     visibility: visible !important;
     opacity: 1 !important;
+}
+
+#popup {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 5px 10px;
 }
