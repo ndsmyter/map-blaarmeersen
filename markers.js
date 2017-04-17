@@ -79,9 +79,8 @@ var ropes = [
     [[3.681704, 51.044325], volvo1.coordinates],
     [[3.681356, 51.044396], volvo2.coordinates]
 ];
-// TODO Add some more styles
-// Generated using http://fa2png.io/
 var styles = {
+    // Generated using http://fa2png.io/
     icon: new ol.style.Style({
         image: new ol.style.Icon({
             scale: 0.7,
@@ -89,6 +88,8 @@ var styles = {
             src: '3rdparty/font-awesome/font-awesome_4-7-0_map-marker_50_0_000000_none.png'
         })
     }),
+
+    // Generated using http://fa2png.io/
     car: new ol.style.Style({
         image: new ol.style.Icon({
             scale: 0.7,
@@ -96,6 +97,8 @@ var styles = {
             src: '3rdparty/font-awesome/font-awesome_4-7-0_car_50_0_000000_none.png'
         })
     }),
+
+    // Box icon by Marc Anderson, from thenounproject.com. (https://thenounproject.com/marcbanderson/)
     platform: new ol.style.Style({
         image: new ol.style.Icon({
             scale: 0.7,
