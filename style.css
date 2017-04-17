@@ -6,11 +6,16 @@ html, body, .map {
     margin: 0;
 }
 
-.rotate-north {
+.extra-controls {
     top: 65px;
     left: .5em;
 }
 
-.ol-touch .rotate-north {
+.ol-touch .extra-controls {
     top: 80px;
+}
+
+.ol-rotate {
+    visibility: visible !important;
+    opacity: 1 !important;
 }
