@@ -29,4 +29,11 @@ html, body, .map {
     border-radius: 10px;
     border: 1px solid black;
     padding: 5px 10px;
+    max-width: 500px;
+}
+
+#close-btn {
+    width: 100%;
+    text-align: right;
+    cursor: pointer;
 }
